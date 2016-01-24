@@ -265,7 +265,10 @@ for i in reader:
 
 
 def name(x):
-  return ccg_[x][1]
+  if x in ccg_:
+    return ccg_[x][1]
+  else:
+    return x
 
 def county(x):
   return ccg_[x][2]

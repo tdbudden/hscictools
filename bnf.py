@@ -45,7 +45,10 @@ with open(refdatadir+'/20151201_1448981120891_BNF_Code_Information.csv') as f:
               bnf_[row[2*i+1]]=[d for d in desc]
 
 def path(x):
+  if x in bnf_:
     return bnf_[x]
+  else:
+    return [x]
 
 def description(x):
    return ' | '.join(path(x))

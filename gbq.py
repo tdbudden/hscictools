@@ -46,9 +46,15 @@ def to_df_(j,cast,index):
     df=pd.DataFrame(j)
     for k,func in cast.items():
       if k in df.columns:
-        df[k]=df[k].apply(func)
+        try:
+          df[k]=df[k].apply(func)
+        except Exception, e:
+          print "Couldn't cast",k,e
     if index:
-      df.set_index(index,inplace=True)
+      try:
+        df.set_index(index,inplace=True)
+      except Exception, e:
+        print "Couldn't set index",index
     print "%i rows converted to DataFrame in %.2f seconds" % (len(df),time.time()-t0)
     return df
 
